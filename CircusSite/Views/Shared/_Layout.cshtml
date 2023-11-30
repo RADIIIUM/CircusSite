@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Сайт программ цирка</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ramka.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CircusSite.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navig">
+            <div class="container-fluid">
+                <img src="~/image/circuslogo.png" width="100" height="100" />
+                <img src="~/image/circusstartext.png" width="500" height="70" />
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="ramka-2"><img src="~/image/circuslogo.png" width="200" height="200" /></div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

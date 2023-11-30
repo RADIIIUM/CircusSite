@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Веселый цирк </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CircusSite.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="CreateWindow">
+        <h2>- = Обновить существующую программу! = - </h2>
+        <div asp-validation-summary="All"
+             class="errorMessage">   </div>
+        @{
+            using(CircusContext db = new CircusContext())
+            {
+                <form method="post" asp-controller="Home" asp-action="EditProgramm">
+            <input type="text" readonly value="@DataForEdit.ticket.IdTicket" name="Id" />
+            <input type="text" placeholder="Название программы" name="Name" value="@DataForEdit.ticket.ProgrammName"/>
+                    <input type="date" placeholder="Дата проведения" name="Date" value="@DataForEdit.ticket.DataProvedenia.ToString("yyyy-MM-dd")" />
+                    <input type="number" placeholder="Цена билета" name="Price" value="@DataForEdit.ticket.Price" />
+
+            <input class="btnUpdate" type="submit" value="Сохранить" />
+            <a class="btnDelete nav-link text-white"
+               asp-controller="Home"
+               asp-action="Index">
+                Назад
+            </a>
+        </form>
+            }
+        }
+    </div>
+</body>
+</html>

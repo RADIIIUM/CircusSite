@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Веселый цирк </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ramka.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CircusSite.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="Window">
+        <a class="btnAdd nav-link text-white"
+                asp-controller="Home"
+                asp-action="CreateProgramm">
+            Добавить программу
+        </a>
+      <table class="table">
+               <thead>
+                   <tr>
+                       <th> ID </th>
+                       <th> Программа </th>
+                       <th> Дата проведения </th>
+                       <th> Цена билета </th>
+                       <th></th>
+                       <th></th>
+                   </tr>
+              </thead>
+              <tbody>
+                        @{
+                            using (CircusContext db = new CircusContext())
+                            {
+                                foreach (var programm in db.Tickets)
+                                {
+                                    @if (programm != null)
+                                    {
+                                        <tr>
+
+                                            <th>
+                                                @programm.IdTicket;
+                                            </th>
+                                            <th>
+                                                @programm.ProgrammName;
+                                            </th>
+                                            <th>
+                                                @programm.DataProvedenia.ToString("dd.MM.yyyy");
+                                            </th>
+                                            <th>
+                                                @programm.Price;
+                                            </th>
+                                            <th>
+                                                <form method="post" asp-controller="Home" asp-action="DeleteProgramm">
+                                                    <input type="hidden" value="@programm.IdTicket" name="Id" />
+                                                    <input type="submit" class="btnDelete" value="Удалить" />
+                                                </form>
+                                            </th>
+                                            <th>
+                                                <form method="post" asp-controller="Home" asp-action="OpenEdit">
+                                                    <input type="hidden" value="@programm.IdTicket" name="Id" />
+                                                    <input type="submit" class="btnUpdate" value="Изменить" />
+                                                </form>
+                                            </th>
+
+                                        </tr>
+                                    }
+                                }
+                               }
+                            }
+              </tbody>
+
+        </table>
+</div>
+</body>
+</html>
